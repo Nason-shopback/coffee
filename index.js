@@ -1,5 +1,9 @@
 var linebot = require('linebot');
 var express = require('express');
+const client = new line.Client({
+  channelAccessToken: '3fIe/4upQMWouWdAdN9POh9Gx/pM2x/3ZpvU7CGTL2BokVGWCHmrzA7XkpZa1sCAWqhzlvWUr9sb38jQq6be25cabH3U7gk4RQjAKNdxpr72K1z4MEoJyIFo6q4ElL8qlEVAnKxyuNoTv/BCiCUPaAdB04t89/1O/w1cDnyilFU='
+});
+const line = require('@line/bot-sdk');
 
 var bot = linebot({
 	channeId: '1599893363',
@@ -30,9 +34,6 @@ bot.on('message', function(event) {
   }
 });
 
-const client = new line.Client({
-  channelAccessToken: '3fIe/4upQMWouWdAdN9POh9Gx/pM2x/3ZpvU7CGTL2BokVGWCHmrzA7XkpZa1sCAWqhzlvWUr9sb38jQq6be25cabH3U7gk4RQjAKNdxpr72K1z4MEoJyIFo6q4ElL8qlEVAnKxyuNoTv/BCiCUPaAdB04t89/1O/w1cDnyilFU='
-});
 
 
 const app = express();
