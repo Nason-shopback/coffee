@@ -13,12 +13,27 @@ bot.on('message', function(event) {
       // success 
       console.log(msg);
       console.log(event);
+      client.getProfile(event.source.userId)
+      .then((profile) => {
+        console.log(profile.displayName);
+        console.log(profile.userId);
+        console.log(profile.pictureUrl);
+        console.log(profile.statusMessage);
+      })
+      .catch((err) => {
+    // error handling
+  });
     }).catch(function(error) {
       // error 
       console.log('error');
     });
   }
 });
+
+const client = new line.Client({
+  channelAccessToken: '3fIe/4upQMWouWdAdN9POh9Gx/pM2x/3ZpvU7CGTL2BokVGWCHmrzA7XkpZa1sCAWqhzlvWUr9sb38jQq6be25cabH3U7gk4RQjAKNdxpr72K1z4MEoJyIFo6q4ElL8qlEVAnKxyuNoTv/BCiCUPaAdB04t89/1O/w1cDnyilFU='
+});
+
 
 const app = express();
 const linebotParser = bot.parser();
