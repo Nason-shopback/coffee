@@ -1,4 +1,4 @@
-var linebot = require('linebox');
+var linebot = require('linebot');
 var express = require('express');
 
 var bot = linebot({
