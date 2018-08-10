@@ -1,0 +1,22 @@
+var linebot = require('linebox');
+var express = require('express');
+
+var bot = linebot({
+	channeId: '1599893363',
+	channelSecret: '23e875b7f89a534de55249f2c5911639',
+	channelAccessToken: '3fIe/4upQMWouWdAdN9POh9Gx/pM2x/3ZpvU7CGTL2BokVGWCHmrzA7XkpZa1sCAWqhzlvWUr9sb38jQq6be25cabH3U7gk4RQjAKNdxpr72K1z4MEoJyIFo6q4ElL8qlEVAnKxyuNoTv/BCiCUPaAdB04t89/1O/w1cDnyilFU='
+});
+
+bot.on('message', function(event) {
+	console.log(event); //把收到訊息的 event 印出來看看
+});
+
+const app = express();
+const linebotParser = bot.parser();
+app.post('/', linebotParser);
+
+//因為 express 預設走 port 3000，而 heroku 上預設卻不是，要透過下列程式轉換
+var server = app.listen(process.env.PORT || 8080, function() {
+	var port = server.address().port;
+	console.log("App now running on port", port);
+});
