@@ -12,6 +12,7 @@ bot.on('message', function(event) {
     event.reply(msg).then(function(data) {
       // success 
       console.log(msg);
+      console.log(event);
     }).catch(function(error) {
       // error 
       console.log('error');
