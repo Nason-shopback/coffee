@@ -26,12 +26,7 @@ bot.on('message', function(event) {
         console.log(profile.pictureUrl);
         console.log(profile.statusMessage);
 
-        client.pushMessage(user,{type: 'text', text: '文字'}).then(()=>{
-          console.log("Message has sent.");
-        })
-        .catch((error)=>{
-          console.log(error);
-        });
+        
       })
       .catch((err) => {
     // error handling
@@ -42,6 +37,12 @@ bot.on('message', function(event) {
     });
   }
 });
+client.pushMessage(user,{type: 'text', text: '文字'}).then(()=>{
+          console.log("Message has sent.");
+        })
+        .catch((error)=>{
+          console.log(error);
+        });
 
 
 const app = express();
