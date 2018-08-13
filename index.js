@@ -20,7 +20,7 @@ bot.on('message', function(event) {
       console.log(event);
       client.getProfile(event.source.userId)
       .then((profile) => {
-        user = prefile.userId;
+        user = profile.userId;
         console.log(profile.displayName);
         console.log(profile.userId);
         console.log(profile.pictureUrl);
