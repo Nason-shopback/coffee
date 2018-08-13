@@ -39,6 +39,11 @@ bot.on('message', function(event) {
     // error handling
   });
 
+  client.replyMessage(event.replyToken, {type: 'text',text: 'rely'})
+  .then(() => {
+    console.log('replyToken test');
+  })
+
 });
 client.pushMessage('U505af16bb05fed728c8f39f72806de75',{type: 'text', text: '測試點咖啡'}).then(()=>{
   console.log("Message has sent.");
