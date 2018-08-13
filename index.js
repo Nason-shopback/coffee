@@ -37,7 +37,7 @@ bot.on('message', function(event) {
     });
   }
 });
-client.pushMessage(user,{type: 'text', text: '文字'}).then(()=>{
+bot.push('8413382560424','文字：你好').then(()=>{
           console.log("Message has sent.");
         })
         .catch((error)=>{
