@@ -39,7 +39,7 @@ bot.on('message', function(event) {
     // error handling
   });
 
-  client.replyMessage(event.replyToken, {type: 'text',text: 'rely'})
+  client.replyMessage(event.replyToken, {type: 'sticker', packageId: '1', stickerId: '424'})
   .then(() => {
     console.log('replyToken test');
   })
