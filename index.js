@@ -21,7 +21,7 @@ bot.on('message', function(event) {
     
     if (event.message.type = 'text') {
 
-      var msg = '收到：'+profile.displayName+'的'+event.message.text;
+      var msg = '收到：'+'@'+profile.displayName+'的'+event.message.text;
 
       event.reply(msg).then(function(data) {
       // success 
@@ -42,6 +42,7 @@ bot.on('message', function(event) {
 });
 client.pushMessage('U505af16bb05fed728c8f39f72806de75',{type: 'text', text: '測試點咖啡'}).then(()=>{
   console.log("Message has sent.");
+
 })
 .catch((error)=>{
   console.log(error);
