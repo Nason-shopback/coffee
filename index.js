@@ -19,8 +19,29 @@ bot.on('message', function(event) {
     console.log(profile.pictureUrl);
     console.log(profile.statusMessage);
     
-    if (event.message.type = 'text') {
-        if (event.message.text)
+    if (event.message.type == 'text') {
+      if (event.message.text== 'test'){
+        {
+          "type": "template",
+          "altText": "this is a confirm template",
+          "template": {
+            "type": "confirm",
+            "text": "Are you sure?",
+            "actions": [
+            {
+              "type": "message",
+              "label": "Yes",
+              "text": "yes"
+            },
+            {
+              "type": "message",
+              "label": "No",
+              "text": "no"
+            }
+            ]
+          }
+        }
+      }
 
       var msg = '收到：'+profile.displayName+'的'+event.message.text;
 
