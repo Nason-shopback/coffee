@@ -20,8 +20,9 @@ bot.on('message', function(event) {
     console.log(profile.statusMessage);
     
     if (event.message.type = 'text') {
+        if (event.message.text)
 
-      var msg = '收到：'+'@'+profile.displayName+'的'+event.message.text;
+      var msg = '收到：'+profile.displayName+'的'+event.message.text;
 
       event.reply(msg).then(function(data) {
       // success 
@@ -39,19 +40,14 @@ bot.on('message', function(event) {
     // error handling
   });
 
-  client.replyMessage(event.replyToken, {type: 'sticker', packageId: '1', stickerId: '424'})
-  .then(() => {
-    console.log('replyToken test');
-  })
-
 });
-client.pushMessage('U505af16bb05fed728c8f39f72806de75',{type: 'text', text: '測試點咖啡'}).then(()=>{
-  console.log("Message has sent.");
+// client.pushMessage('U505af16bb05fed728c8f39f72806de75',{type: 'text', text: '測試點咖啡'}).then(()=>{
+//   console.log("Message has sent.");
 
-})
-.catch((error)=>{
-  console.log(error);
-});
+// })
+// .catch((error)=>{
+//   console.log(error);
+// });
 
 
 const app = express();
