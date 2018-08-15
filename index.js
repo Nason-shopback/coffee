@@ -21,7 +21,7 @@ bot.on('message', function(event) {
     
     if (event.message.type == 'text') {
       if (event.message.text== 'test'){
-        {
+          event.reply({
           "type": "template",
           "altText": "this is a confirm template",
           "template": {
@@ -40,7 +40,8 @@ bot.on('message', function(event) {
             }
             ]
           }
-        }
+        });
+        
       }
 
       var msg = '收到：'+profile.displayName+'的'+event.message.text;
