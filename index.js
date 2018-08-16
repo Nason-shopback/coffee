@@ -8,8 +8,8 @@ const cp = require('child_process');
 
 // create LINE SDK config from env variables
 const config = {
-  channelAccessToken: 'yzjH2tFAMOozEMsx58oSDUbZr4WTgdAFvX9cvcyndkhiKDL0L2InrLTexzNoQOpW9wXZGrJ1T6A/37RmGrjqJ2tmlhrvXktNTuhjWc20Lf4CqagnVk63OB495848+jOVD9abNbktKvAgwXowLa0kiwdB04t89/1O/w1cDnyilFU=',
-  channelSecret: 'e96f258804ec4af9e7006298eff84bd8',
+  channelAccessToken: '3fIe/4upQMWouWdAdN9POh9Gx/pM2x/3ZpvU7CGTL2BokVGWCHmrzA7XkpZa1sCAWqhzlvWUr9sb38jQq6be25cabH3U7gk4RQjAKNdxpr72K1z4MEoJyIFo6q4ElL8qlEVAnKxyuNoTv/BCiCUPaAdB04t89/1O/w1cDnyilFU=',
+  channelSecret: '23e875b7f89a534de55249f2c5911639',
 };
 
 // base URL for webhook server
