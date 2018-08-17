@@ -269,14 +269,14 @@ function handleText(message, replyToken, source) {
 }
 
 function handleImage(message, replyToken) {
-  const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.jpg`);
-  const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpg`);
+  const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.png`);
+  const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.png`);
 
   return downloadContent(message.id, downloadPath)
     .then((downloadPath) => {
       // ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
-      cp.execSync(`convert -resize 240x jpg:${downloadPath} jpg:${previewPath}`);
+      cp.execSync(`convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`);
 
       return client.replyMessage(
         replyToken,
