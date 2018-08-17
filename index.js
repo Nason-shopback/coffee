@@ -350,8 +350,8 @@ function handleLocation(message, replyToken) {
       type: 'location',
       title: message.title,
       address: message.address,
-      latitude: message.latitude,
-      longitude: message.longitude,
+      latitude: 35.65910807942215,
+      longitude: 139.70372892916203,
     }
   );
 }
