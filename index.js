@@ -276,7 +276,7 @@ function handleImage(message, replyToken) {
     .then((downloadPath) => {
       // ImageMagick is needed here to run 'convert'
       // Please consider about security and performance by yourself
-      cp.execSync(`convert -resize 240x jpeg:${downloadPath} jpeg:${previewPath}`);
+      cp.execSync(`convert -resize 240x jpg:${downloadPath} jpg:${previewPath}`);
 
       return client.replyMessage(
         replyToken,
