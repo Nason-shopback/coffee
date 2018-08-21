@@ -344,7 +344,7 @@ function downloadContent(messageId, downloadPath) {
 }
 
 function handleLocation(message, replyToken) {
-  return replyText(replyToken, [message.type, message.title, message.address, message.latitude, message.longitude]);
+  return replyText(replyToken, [message.address, message.latitude, message.longitude]);
   // return client.replyMessage(
   //   replyToken,
   //   {
