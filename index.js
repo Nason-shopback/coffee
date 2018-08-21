@@ -344,17 +344,17 @@ function downloadContent(messageId, downloadPath) {
 }
 
 function handleLocation(message, replyToken) {
-  return replyText(replyToken, [message.address, message.latitude, message.longitude]);
-  // return client.replyMessage(
-  //   replyToken,
-  //   {
-  //     type: 'location',
-  //     title: message.title,
-  //     address: message.address,
-  //     latitude: 35.65910807942215,
-  //     longitude: 139.70372892916203,
-  //   }
-  //   );
+  // return replyText(replyToken, [message.address, message.latitude, message.longitude]);
+  return client.replyMessage(
+    replyToken,
+    {
+      type: 'location',
+      title: 'your location',
+      address: message.address,
+      latitude: message.latitude,
+      longitude: message.longitude,
+    }
+    );
 }
 
 function handleSticker(message, replyToken) {
