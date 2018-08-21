@@ -1,7 +1,7 @@
 {
-  "name": "kitchensink",
+  "name": "coffee",
   "version": "0.0.0",
-  "description": "A kitchen-sink LINE bot example",
+  "description": "coffee helper",
   "main": "index.js",
   "scripts": {
     "start": "node ."
