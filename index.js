@@ -292,8 +292,8 @@ function handleText(message, replyToken, source) {
 }
 
 function handleImage(message, replyToken) {
-  const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.png`);
-  const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.png`);
+  const downloadPath = path.join(__dirname, 'downloaded', `${message.id}.jpeg`);
+  const previewPath = path.join(__dirname, 'downloaded', `${message.id}-preview.jpeg`);
 
   return downloadContent(message.id, downloadPath)
   .then((downloadPath) => {
