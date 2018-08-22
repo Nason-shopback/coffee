@@ -6,8 +6,8 @@ const fs = require('fs');
 const path = require('path');
 const cp = require('child_process');
 // getting-started.js
-// const mongoose = require('mongoose');
-// mongoose.connect('mongodb://admin:admin123@ds135757.mlab.com:35757/slave');
+const mongoose = require('mongoose');
+mongoose.connect('mongodb://admin:admin123@ds135757.mlab.com:35757/slave');
 // const mongodb = require('mongodb');
 // const MongoClient = mongodb.MongoClient;
 // create LINE SDK config from env variables
@@ -15,12 +15,12 @@ const config = {
   channelAccessToken: '3fIe/4upQMWouWdAdN9POh9Gx/pM2x/3ZpvU7CGTL2BokVGWCHmrzA7XkpZa1sCAWqhzlvWUr9sb38jQq6be25cabH3U7gk4RQjAKNdxpr72K1z4MEoJyIFo6q4ElL8qlEVAnKxyuNoTv/BCiCUPaAdB04t89/1O/w1cDnyilFU=',
   channelSecret: '23e875b7f89a534de55249f2c5911639',
 };
-// const db = mongoose.connection;
-// db.on('error', console.error.bind(console, 'connection error:'));
-// db.once('open', function() {
-//   console.log('we\'re connected!');
-//   // we're connected!
-// });
+const db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+  console.log('we\'re connected!');
+  // we're connected!
+});
 
 // var url = 'mongodb://admin:admin123@ds135757.mlab.com:35757/slave';
 //  MongoClient.connect(url, function (err, db) {
