@@ -272,9 +272,28 @@ function handleText(message, replyToken, source) {
       return replyText(replyToken, 'Leaving room')
       .then(() => client.leaveRoom(source.roomId));
     }
+    case 'technology':
+      pushArticle('technology');
+    case 'space':
+      pushArticle('space');
+    case 'health':
+      pushArticle('health-and-medicine');
+    case 'brain':
+      pushArticle('brain');
+    case 'plants':
+      pushArticle('plants-and-animals');
+    case 'physics':
+      pushArticle('physics');
+    case 'chemistry':
+      pushArticle('chemistry');
+    case 'policy':
+      pushArticle('policy');
+    case 'blog':
+      pushArticle('editors-blog');
     default:
     console.log(`Echo message to ${replyToken}: ${message.text}`);
     return replyText(replyToken, message.text);
+
   }
 }
 
@@ -377,7 +396,7 @@ function handleSticker(message, replyToken) {
     }
     );
 }
-const pushArticle = ()=>{
+const pushArticle = (category="")=>{
   // db.on('error', console.error.bind(console, 'connection error:'));
   // db.once('open', function() {
   //   console.log('we\'re connected!');
@@ -387,14 +406,23 @@ const pushArticle = ()=>{
   //     category:String
   //   });
   //   var ArticleModel = db.model('Article',ArticleSchema);
-    const url = 'https://www.iflscience.com/';
+    const url = 'https://www.iflscience.com/'+category;
     request(url, (err, res, body) => {
     // console.log(body);
-    const $ = cheerio.load(body);
+    let $ = cheerio.load(body);
     let Articles = [];
     Articles = $('.page .main-content article .content').find('a');
     // console.log(Articles);
-    console.log('type= '+typeof(Articles));
+    console.log(
+                "1.\n 主題：\n"+Articles["0"]["attribs"]["title"]+
+                "\n類別：\n"+Articles["0"]["attribs"]["href"].split("/")[3]+
+                "\n"+Articles["0"]["attribs"]["href"]+
+                "\n2.\n 主題：\n"+Articles["1"]["attribs"]["title"]+
+                "\n類別：\n"+Articles["1"]["attribs"]["href"].split("/")[3]+
+                "\n"+Articles["1"]["attribs"]["href"]+
+                "\n3.\n 主題：\n"+Articles["2"]["attribs"]["title"]+
+                "\n類別：\n"+Articles["2"]["attribs"]["href"].split("/")[3]+
+                "\n"+Articles["2"]["attribs"]["href"]);
     
       client.pushMessage('U505af16bb05fed728c8f39f72806de75',{
         "type": "text",
@@ -440,7 +468,8 @@ function check(){
     nowTime();
     control();
 }
-setInterval(check,500);
+setInterval(check,1000);
+pushArticle();
 // listen on port
 const port = process.env.PORT || 3033;
 app.listen(port, () => {
