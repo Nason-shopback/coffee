@@ -431,7 +431,7 @@ function nowTime(){
 }
  
 function control(){
-            if(hours==12 && minutes==6 && seconds==0){
+            if(hours==(12-8) && minutes==9 && seconds==0){
                 console.log("Launch!!!");
                 pushArticle();
                 
