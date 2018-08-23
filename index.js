@@ -442,23 +442,24 @@ const pushArticle = (token=null)=>{
         "\n類別：\n"+Articles[three.toString()]["attribs"]["href"].split("/")[3]+
         "\n"+Articles[three.toString()]["attribs"]["href"]
       });
-    }
-    userIds.forEach((user)=>{
-      client.pushMessage(user,{
-        "type": "text",
-        "text": "選一篇喜歡的文章來讀吧~\n"+
-        "1.\n 標題：\n"+Articles[one.toString()]["attribs"]["title"]+
-        "\n類別：\n"+Articles[one.toString()]["attribs"]["href"].split("/")[3]+
-        "\n"+Articles[one.toString()]["attribs"]["href"]+
-        "\n2.\n 標題：\n"+Articles[two.toString()]["attribs"]["title"]+
-        "\n類別：\n"+Articles[two.toString()]["attribs"]["href"].split("/")[3]+
-        "\n"+Articles[two.toString()]["attribs"]["href"]+
-        "\n3.\n 標題：\n"+Articles[three.toString()]["attribs"]["title"]+
-        "\n類別：\n"+Articles[three.toString()]["attribs"]["href"].split("/")[3]+
-        "\n"+Articles[three.toString()]["attribs"]["href"]
+    }else{
+      userIds.forEach((user)=>{
+        client.pushMessage(user,{
+          "type": "text",
+          "text": "選一篇喜歡的文章來讀吧~\n"+
+          "1.\n 標題：\n"+Articles[one.toString()]["attribs"]["title"]+
+          "\n類別：\n"+Articles[one.toString()]["attribs"]["href"].split("/")[3]+
+          "\n"+Articles[one.toString()]["attribs"]["href"]+
+          "\n2.\n 標題：\n"+Articles[two.toString()]["attribs"]["title"]+
+          "\n類別：\n"+Articles[two.toString()]["attribs"]["href"].split("/")[3]+
+          "\n"+Articles[two.toString()]["attribs"]["href"]+
+          "\n3.\n 標題：\n"+Articles[three.toString()]["attribs"]["title"]+
+          "\n類別：\n"+Articles[three.toString()]["attribs"]["href"].split("/")[3]+
+          "\n"+Articles[three.toString()]["attribs"]["href"]
 
-      });    
-    });
+        });    
+      });
+    }
   });
 
 };
