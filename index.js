@@ -421,18 +421,18 @@ const pushArticle = (token=null)=>{
 
   const url = 'https://www.iflscience.com/';
   request(url, (err, res, body) => {
-    const userIds = ['U505af16bb05fed728c8f39f72806de75'];
+    const userIds = ['U505af16bb05fed728c8f39f72806de75','Ued792698de2ccb6b5e842adf06b30804'];
     let $ = cheerio.load(body);
     let Articles = [];
     Articles = $('.page .main-content article .content').find('a');
     const one = Math.floor((Math.random()*Articles.length));
     const two = Math.floor((Math.random()*Articles.length));
     const three = Math.floor((Math.random()*Articles.length));
-    if(token!= null){
+    if(token != null){
       client.replyMessage(token, {
         "type": "text",
         "text": "選一篇喜歡的文章來讀吧~\n"+
-        "1.\n 標題：\n"+Articles[one.toString()]["attribs"]["title"]+
+        "1.\n標題：\n"+Articles[one.toString()]["attribs"]["title"]+
         "\n類別：\n"+Articles[one.toString()]["attribs"]["href"].split("/")[3]+
         "\n"+Articles[one.toString()]["attribs"]["href"]+
         "\n2.\n 標題：\n"+Articles[two.toString()]["attribs"]["title"]+
@@ -447,7 +447,7 @@ const pushArticle = (token=null)=>{
         client.pushMessage(user,{
           "type": "text",
           "text": "選一篇喜歡的文章來讀吧~\n"+
-          "1.\n 標題：\n"+Articles[one.toString()]["attribs"]["title"]+
+          "1.\n標題：\n"+Articles[one.toString()]["attribs"]["title"]+
           "\n類別：\n"+Articles[one.toString()]["attribs"]["href"].split("/")[3]+
           "\n"+Articles[one.toString()]["attribs"]["href"]+
           "\n2.\n 標題：\n"+Articles[two.toString()]["attribs"]["title"]+
