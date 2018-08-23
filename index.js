@@ -395,13 +395,20 @@ const pushArticle = ()=>{
     Articles = $('.page .main-content article .content').find('a');
     // console.log(Articles);
     console.log('type= '+typeof(Articles));
-    for(var index =0 ; index<3; index++){
+    
       client.pushMessage('U505af16bb05fed728c8f39f72806de75',{
         "type": "text",
         "text": "選一篇喜歡的文章來讀吧~\n"+
-                "1.\n 主題："+Articles[index.toString()]["attribs"]["title"]+
-                "\n類別："+Articles[index.toString()]["attribs"]["href"].split("/")[3]+
-                "\n"+Articles[index.toString()]["attribs"]["href"]
+                "1.\n 主題："+Articles["0"]["attribs"]["title"]+
+                "\n類別："+Articles["0"]["attribs"]["href"].split("/")[3]+
+                "\n"+Articles["0"]["attribs"]["href"]+
+                "2.\n 主題："+Articles["1"]["attribs"]["title"]+
+                "\n類別："+Articles["1"]["attribs"]["href"].split("/")[3]+
+                "\n"+Articles["1"]["attribs"]["href"]+
+                "3.\n 主題："+Articles["2"]["attribs"]["title"]+
+                "\n類別："+Articles["2"]["attribs"]["href"].split("/")[3]+
+                "\n"+Articles["2"]["attribs"]["href"]
+
       });
       // var articleEntity = new ArticleModel(
       // {
@@ -410,13 +417,30 @@ const pushArticle = ()=>{
       //   category: Articles[index.toString()]["attribs"]["href"].split("/")[3]
       // });
       // articleEntity.save();
-    }
+    
     
   })
 
   // });
 };
-// setInterval(pushArticle,3000);
+var hours,minutes,seconds;
+function nowTime(){
+     hours=new Date().getHours();
+     minutes=new Date().getMinutes();
+     seconds=new Date().getSeconds();
+}
+ 
+function control(){
+            if(hours==9 && minute==30 && seconds==0){
+                pushArticle();
+            }else
+              console.log("Not yet");
+        }
+function check(){
+    nowTime();
+    control();
+}
+setInterval(check,50000);
 // listen on port
 const port = process.env.PORT || 3033;
 app.listen(port, () => {
