@@ -429,20 +429,22 @@ const pushArticle = (token=null)=>{
     const two = Math.floor((Math.random()*Articles.length));
     const three = Math.floor((Math.random()*Articles.length));
     if(token != null){
+      console.log('token != null');
       client.replyMessage(token, {
         "type": "text",
         "text": "選一篇喜歡的文章來讀吧~\n"+
         "1.\n標題：\n"+Articles[one.toString()]["attribs"]["title"]+
         "\n類別：\n"+Articles[one.toString()]["attribs"]["href"].split("/")[3]+
         "\n"+Articles[one.toString()]["attribs"]["href"]+
-        "\n2.\n 標題：\n"+Articles[two.toString()]["attribs"]["title"]+
+        "\n2.\n標題：\n"+Articles[two.toString()]["attribs"]["title"]+
         "\n類別：\n"+Articles[two.toString()]["attribs"]["href"].split("/")[3]+
         "\n"+Articles[two.toString()]["attribs"]["href"]+
-        "\n3.\n 標題：\n"+Articles[three.toString()]["attribs"]["title"]+
+        "\n3.\n標題：\n"+Articles[three.toString()]["attribs"]["title"]+
         "\n類別：\n"+Articles[three.toString()]["attribs"]["href"].split("/")[3]+
         "\n"+Articles[three.toString()]["attribs"]["href"]
       });
     }else{
+      console.log('token == null');
       userIds.forEach((user)=>{
         client.pushMessage(user,{
           "type": "text",
@@ -450,10 +452,10 @@ const pushArticle = (token=null)=>{
           "1.\n標題：\n"+Articles[one.toString()]["attribs"]["title"]+
           "\n類別：\n"+Articles[one.toString()]["attribs"]["href"].split("/")[3]+
           "\n"+Articles[one.toString()]["attribs"]["href"]+
-          "\n2.\n 標題：\n"+Articles[two.toString()]["attribs"]["title"]+
+          "\n2.\n標題：\n"+Articles[two.toString()]["attribs"]["title"]+
           "\n類別：\n"+Articles[two.toString()]["attribs"]["href"].split("/")[3]+
           "\n"+Articles[two.toString()]["attribs"]["href"]+
-          "\n3.\n 標題：\n"+Articles[three.toString()]["attribs"]["title"]+
+          "\n3.\n標題：\n"+Articles[three.toString()]["attribs"]["title"]+
           "\n類別：\n"+Articles[three.toString()]["attribs"]["href"].split("/")[3]+
           "\n"+Articles[three.toString()]["attribs"]["href"]
 
@@ -490,10 +492,10 @@ const replyArticle = (replyToken, category="")=>{
       "1.\n標題：\n"+Articles[one.toString()]["attribs"]["title"]+
       "\n類別：\n"+Articles[one.toString()]["attribs"]["href"].split("/")[3]+
       "\n"+Articles[one.toString()]["attribs"]["href"]+
-      "\n2.\n 標題：\n"+Articles[two.toString()]["attribs"]["title"]+
+      "\n2.\n標題：\n"+Articles[two.toString()]["attribs"]["title"]+
       "\n類別：\n"+Articles[two.toString()]["attribs"]["href"].split("/")[3]+
       "\n"+Articles[two.toString()]["attribs"]["href"]+
-      "\n3.\n 標題：\n"+Articles[three.toString()]["attribs"]["title"]+
+      "\n3.\n標題：\n"+Articles[three.toString()]["attribs"]["title"]+
       "\n類別：\n"+Articles[three.toString()]["attribs"]["href"].split("/")[3]+
       "\n"+Articles[three.toString()]["attribs"]["href"]
 
