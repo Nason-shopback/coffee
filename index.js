@@ -421,7 +421,7 @@ const pushArticle = (token=null)=>{
 
   const url = 'https://www.iflscience.com/';
   request(url, (err, res, body) => {
-    const userIds = ['U505af16bb05fed728c8f39f72806de75'];
+    const userIds = ['U505af16bb05fed728c8f39f72806de75','Ued792698de2ccb6b5e842adf06b30804'];
     let $ = cheerio.load(body);
     let Articles = [];
     Articles = $('.page .main-content article .content').find('a');
@@ -429,7 +429,6 @@ const pushArticle = (token=null)=>{
     const two = Math.floor((Math.random()*Articles.length));
     const three = Math.floor((Math.random()*Articles.length));
     if(token != null){
-      console.log('token != null');
       client.replyMessage(token, {
         "type": "text",
         "text": "選一篇喜歡的文章來讀吧~\n"+
@@ -444,7 +443,6 @@ const pushArticle = (token=null)=>{
         "\n"+Articles[three.toString()]["attribs"]["href"]
       });
     }else{
-      console.log('token == null');
       userIds.forEach((user)=>{
         client.pushMessage(user,{
           "type": "text",
@@ -531,7 +529,7 @@ function check(){
     control();
 }
 setInterval(check,1000);
-pushArticle();
+
 // listen on port
 const port = process.env.PORT || 3033;
 app.listen(port, () => {
