@@ -402,10 +402,10 @@ const pushArticle = ()=>{
                 "1.\n 主題：\n"+Articles["0"]["attribs"]["title"]+
                 "\n類別：\n"+Articles["0"]["attribs"]["href"].split("/")[3]+
                 "\n"+Articles["0"]["attribs"]["href"]+
-                "2.\n 主題：\n"+Articles["1"]["attribs"]["title"]+
+                "\n2.\n 主題：\n"+Articles["1"]["attribs"]["title"]+
                 "\n類別：\n"+Articles["1"]["attribs"]["href"].split("/")[3]+
                 "\n"+Articles["1"]["attribs"]["href"]+
-                "3.\n 主題：\n"+Articles["2"]["attribs"]["title"]+
+                "\n3.\n 主題：\n"+Articles["2"]["attribs"]["title"]+
                 "\n類別：\n"+Articles["2"]["attribs"]["href"].split("/")[3]+
                 "\n"+Articles["2"]["attribs"]["href"]
 
@@ -431,14 +431,9 @@ function nowTime(){
 }
  
 function control(){
-            if(hours==(12-8) && minutes==9 && seconds==0){
+            if(hours==(9-8) && minutes==0 && seconds==0){
                 console.log("Launch!!!");
                 pushArticle();
-                
-            }else{
-              console.log("hours:"+hours);
-              console.log("minutes:"+minutes);
-              console.log("seconds:"+seconds);
             }
         }
 function check(){
