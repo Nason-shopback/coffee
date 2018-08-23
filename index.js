@@ -431,11 +431,14 @@ function nowTime(){
 }
  
 function control(){
-            if(hours==12 && minutes==0 && seconds==0){
-                pushArticle();
+            if(hours==12 && minutes==6 && seconds==0){
                 console.log("Launch!!!");
+                pushArticle();
+                
             }else{
-              console.log("minute:"+minutes);
+              console.log("hours:"+hours);
+              console.log("minutes:"+minutes);
+              console.log("seconds:"+seconds);
             }
         }
 function check(){
