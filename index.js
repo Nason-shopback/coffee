@@ -141,7 +141,7 @@ function handleText(message, replyToken, source) {
           { label: 'technology', type: 'message', text: 'technology' },
           { label: 'space', type: 'message', text: 'space' },
           { label: 'health-and-medicine', type: 'message', text: 'health-and-medicine' },
-          { label: 'brain', type: 'message', text: 'brain' },
+          { label: 'brain', type: 'message', text: 'brain' }
           ],
         },
       }
@@ -157,11 +157,10 @@ function handleText(message, replyToken, source) {
           title: 'List2',
           text: 'Choose one of category',
           actions: [
-          { label: 'technology', type: 'message', text: 'technology' },
-          { label: 'space', type: 'message', text: 'space' },
-          { label: 'health-and-medicine', type: 'message', text: 'health-and-medicine' },
-          { label: 'brain', type: 'message', text: 'brain' },
-          
+          { label: 'plants-and-animals', type: 'message', text: 'plants-and-animals' },
+          { label: 'physics', type: 'message', text: 'physics' },
+          { label: 'chemistry', type: 'message', text: 'chemistry' },
+          { label: 'policy', type: 'message', text: 'policy' },
           ],
         },
       }
