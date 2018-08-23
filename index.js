@@ -20,46 +20,6 @@ const config = {
 };
 const db = mongoose.connection;
 
-const pushArticle = ()=>{
-  // db.on('error', console.error.bind(console, 'connection error:'));
-  // db.once('open', function() {
-  //   console.log('we\'re connected!');
-  //   var ArticleSchema = new mongoose.Schema({
-  //     title:String,
-  //     href:String,
-  //     category:String
-  //   });
-  //   var ArticleModel = db.model('Article',ArticleSchema);
-    const url = 'https://www.iflscience.com/';
-    request(url, (err, res, body) => {
-    // console.log(body);
-    const $ = cheerio.load(body);
-    let Articles = [];
-    Articles = $('.page .main-content article .content').find('a');
-    // console.log(Articles);
-    console.log('type= '+typeof(Articles));
-    // for(var index =0 ; index<3; index++){
-    //   client.pushMessage(,{
-    //     "type": "text",
-    //     "text": "選一篇喜歡的文章來讀吧~\n"+
-    //             "1.\n 主題："+Articles[index.toString()]["attribs"]["title"]+
-    //             "\n類別："+Articles[index.toString()]["attribs"]["href"].split("/")[3]+
-    //             "\n"+Articles[index.toString()]["attribs"]["href"]
-    //   });
-    //   // var articleEntity = new ArticleModel(
-    //   // {
-    //   //   title:Articles[index.toString()]["attribs"]["title"],
-    //   //   href:Articles[index.toString()]["attribs"]["href"],
-    //   //   category: Articles[index.toString()]["attribs"]["href"].split("/")[3]
-    //   // });
-    //   // articleEntity.save();
-    // }
-    
-  })
-
-  // });
-};
-
 
 // base URL for webhook server
 const baseURL = 'https://coffee-nason.herokuapp.com/';
@@ -417,7 +377,46 @@ function handleSticker(message, replyToken) {
     }
     );
 }
+const pushArticle = ()=>{
+  // db.on('error', console.error.bind(console, 'connection error:'));
+  // db.once('open', function() {
+  //   console.log('we\'re connected!');
+  //   var ArticleSchema = new mongoose.Schema({
+  //     title:String,
+  //     href:String,
+  //     category:String
+  //   });
+  //   var ArticleModel = db.model('Article',ArticleSchema);
+    const url = 'https://www.iflscience.com/';
+    request(url, (err, res, body) => {
+    // console.log(body);
+    const $ = cheerio.load(body);
+    let Articles = [];
+    Articles = $('.page .main-content article .content').find('a');
+    // console.log(Articles);
+    console.log('type= '+typeof(Articles));
+    for(var index =0 ; index<3; index++){
+      client.pushMessage('U505af16bb05fed728c8f39f72806de75',{
+        "type": "text",
+        "text": "選一篇喜歡的文章來讀吧~\n"+
+                "1.\n 主題："+Articles[index.toString()]["attribs"]["title"]+
+                "\n類別："+Articles[index.toString()]["attribs"]["href"].split("/")[3]+
+                "\n"+Articles[index.toString()]["attribs"]["href"]
+      });
+      // var articleEntity = new ArticleModel(
+      // {
+      //   title:Articles[index.toString()]["attribs"]["title"],
+      //   href:Articles[index.toString()]["attribs"]["href"],
+      //   category: Articles[index.toString()]["attribs"]["href"].split("/")[3]
+      // });
+      // articleEntity.save();
+    }
+    
+  })
 
+  // });
+};
+setInterval(pushArticle,3000);
 // listen on port
 const port = process.env.PORT || 3033;
 app.listen(port, () => {
