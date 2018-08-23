@@ -421,7 +421,7 @@ const pushArticle = (token=null)=>{
 
   const url = 'https://www.iflscience.com/';
   request(url, (err, res, body) => {
-    const userIds = ['U505af16bb05fed728c8f39f72806de75','Ued792698de2ccb6b5e842adf06b30804'];
+    const userIds = ['U505af16bb05fed728c8f39f72806de75'];
     let $ = cheerio.load(body);
     let Articles = [];
     Articles = $('.page .main-content article .content').find('a');
@@ -480,21 +480,24 @@ const replyArticle = (replyToken, category="")=>{
     let Articles = [];
     Articles = $('.page .main-content article .content').find('a');
     // console.log(Articles);
+    const one = Math.floor((Math.random()*Articles.length));
+    const two = Math.floor((Math.random()*Articles.length));
+    const three = Math.floor((Math.random()*Articles.length));
     
-      client.replyMessage(replyToken,{
-        "type": "text",
-        "text": "選一篇喜歡的文章來讀吧~\n"+
-                "1.\n 標題：\n"+Articles["0"]["attribs"]["title"]+
-                "\n類別：\n"+Articles["0"]["attribs"]["href"].split("/")[3]+
-                "\n"+Articles["0"]["attribs"]["href"]+
-                "\n2.\n 標題：\n"+Articles["1"]["attribs"]["title"]+
-                "\n類別：\n"+Articles["1"]["attribs"]["href"].split("/")[3]+
-                "\n"+Articles["1"]["attribs"]["href"]+
-                "\n3.\n 標題：\n"+Articles["2"]["attribs"]["title"]+
-                "\n類別：\n"+Articles["2"]["attribs"]["href"].split("/")[3]+
-                "\n"+Articles["2"]["attribs"]["href"]
+    client.replyMessage(replyToken,{
+      "type": "text",
+      "text": "選一篇喜歡的文章來讀吧~\n"+
+      "1.\n標題：\n"+Articles[one.toString()]["attribs"]["title"]+
+      "\n類別：\n"+Articles[one.toString()]["attribs"]["href"].split("/")[3]+
+      "\n"+Articles[one.toString()]["attribs"]["href"]+
+      "\n2.\n 標題：\n"+Articles[two.toString()]["attribs"]["title"]+
+      "\n類別：\n"+Articles[two.toString()]["attribs"]["href"].split("/")[3]+
+      "\n"+Articles[two.toString()]["attribs"]["href"]+
+      "\n3.\n 標題：\n"+Articles[three.toString()]["attribs"]["title"]+
+      "\n類別：\n"+Articles[three.toString()]["attribs"]["href"].split("/")[3]+
+      "\n"+Articles[three.toString()]["attribs"]["href"]
 
-      });
+    });
       // var articleEntity = new ArticleModel(
       // {
       //   title:Articles[index.toString()]["attribs"]["title"],
