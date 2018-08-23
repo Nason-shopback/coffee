@@ -416,7 +416,7 @@ const pushArticle = ()=>{
 
   // });
 };
-setInterval(pushArticle,3000);
+// setInterval(pushArticle,3000);
 // listen on port
 const port = process.env.PORT || 3033;
 app.listen(port, () => {
