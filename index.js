@@ -393,7 +393,6 @@ function downloadContent(messageId, downloadPath) {
 }
 
 function handleLocation(message, replyToken) {
-  // return replyText(replyToken, [message.address, message.latitude, message.longitude]);
   return client.replyMessage(
     replyToken,
     {
@@ -509,7 +508,6 @@ const replyArticle = (replyToken, category="")=>{
     
   })
 
-  // });
 };
 var hours,minutes,seconds;
 function nowTime(){
