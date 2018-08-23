@@ -431,7 +431,7 @@ function nowTime(){
 }
  
 function control(){
-            if(hours==11 && minute==46 && seconds==50){
+            if(hours==11 && minute==48 && seconds==0){
                 pushArticle();
             }else
               console.log("Not yet");
