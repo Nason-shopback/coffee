@@ -127,7 +127,7 @@ function handleText(message, replyToken, source) {
     } else {
       return replyText(replyToken, 'Bot can\'t use profile API without user ID');
     }
-    case 'buttons':
+    case 'list1':
     return client.replyMessage(
       replyToken,
       {
@@ -135,18 +135,33 @@ function handleText(message, replyToken, source) {
         altText: 'Buttons alt text',
         template: {
           type: 'buttons',
-          title: 'Buttons',
+          title: 'List1',
           text: 'Choose one of category',
           actions: [
           { label: 'technology', type: 'message', text: 'technology' },
           { label: 'space', type: 'message', text: 'space' },
           { label: 'health-and-medicine', type: 'message', text: 'health-and-medicine' },
           { label: 'brain', type: 'message', text: 'brain' },
-          { label: 'plants-and-animals', type: 'message', text: 'plants-and-animals' },
-          { label: 'physics', type: 'message', text: 'physics' },
-          { label: 'chemistry', type: 'message', text: 'chemistry' },
-          { label: 'policy', type: 'message', text: 'policy' },
-          { label: 'editors-blog', type: 'message', text: 'editors-blog' }
+          ],
+        },
+      }
+      );
+    case 'list2':
+    return client.replyMessage(
+      replyToken,
+      {
+        type: 'template',
+        altText: 'Buttons alt text',
+        template: {
+          type: 'buttons',
+          title: 'List2',
+          text: 'Choose one of category',
+          actions: [
+          { label: 'technology', type: 'message', text: 'technology' },
+          { label: 'space', type: 'message', text: 'space' },
+          { label: 'health-and-medicine', type: 'message', text: 'health-and-medicine' },
+          { label: 'brain', type: 'message', text: 'brain' },
+          
           ],
         },
       }
