@@ -135,14 +135,19 @@ function handleText(message, replyToken, source) {
         altText: 'Buttons alt text',
         template: {
           type: 'buttons',
-          thumbnailImageUrl: buttonsImageURL,
-          title: 'My button sample',
-          text: 'Hello, my button',
+          // thumbnailImageUrl: buttonsImageURL,
+          title: 'Buttons',
+          text: 'Choose one of category',
           actions: [
-          { label: 'Go to line.me', type: 'uri', uri: 'https://line.me' },
-          { label: 'Say hello1', type: 'postback', data: 'hello こんにちは' },
-          { label: '言 hello2', type: 'postback', data: 'hello こんにちは', text: 'hello こんにちは' },
-          { label: 'Say message', type: 'message', text: 'Rice=米' },
+          { label: 'technology', type: 'message', text: 'technology' },
+          { label: 'space', type: 'message', text: 'space' },
+          { label: 'health-and-medicine', type: 'message', text: 'health-and-medicine' },
+          { label: 'brain', type: 'message', text: 'brain' },
+          { label: 'plants-and-animals', type: 'message', text: 'plants-and-animals' },
+          { label: 'physics', type: 'message', text: 'physics' },
+          { label: 'chemistry', type: 'message', text: 'chemistry' },
+          { label: 'policy', type: 'message', text: 'policy' },
+          { label: 'editors-blog', type: 'message', text: 'editors-blog' },
           ],
         },
       }
@@ -276,11 +281,11 @@ function handleText(message, replyToken, source) {
       return pushArticle('technology');
     case 'space':
       return pushArticle('space');
-    case 'health':
+    case 'health-and-medicine':
       return pushArticle('health-and-medicine');
     case 'brain':
       return pushArticle('brain');
-    case 'plants':
+    case 'plants-and-animals':
       return pushArticle('plants-and-animals');
     case 'physics':
       return pushArticle('physics');
@@ -288,7 +293,7 @@ function handleText(message, replyToken, source) {
       return pushArticle('chemistry');
     case 'policy':
       return pushArticle('policy');
-    case 'blog':
+    case 'editors-blog':
       return pushArticle('editors-blog');
     default:
     console.log(`Echo message to ${replyToken}: ${message.text}`);
