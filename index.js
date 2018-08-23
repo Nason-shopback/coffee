@@ -308,6 +308,8 @@ function handleText(message, replyToken, source) {
       return pushArticle('policy');
     case 'editors-blog':
       return pushArticle('editors-blog');
+    case 'top':
+      return pushArticle();
     default:
     console.log(`Echo message to ${replyToken}: ${message.text}`);
     return replyText(replyToken, message.text);
