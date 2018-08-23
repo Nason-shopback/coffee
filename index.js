@@ -431,7 +431,7 @@ function nowTime(){
 }
  
 function control(){
-            if(hours==11 && minute==48 && seconds==0){
+            if(hours==11 && minute==51 && seconds==0){
                 pushArticle();
             }else
               console.log("Not yet");
@@ -440,7 +440,7 @@ function check(){
     nowTime();
     control();
 }
-setInterval(check,50000);
+setInterval(check,500);
 // listen on port
 const port = process.env.PORT || 3033;
 app.listen(port, () => {
