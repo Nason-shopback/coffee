@@ -435,7 +435,7 @@ function control(){
                 pushArticle();
                 console.log("Launch!!!");
             }else{
-              console.log("minute:"+minutes):
+              console.log("minute:"+minutes);
             }
         }
 function check(){
