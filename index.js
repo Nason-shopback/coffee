@@ -273,23 +273,23 @@ function handleText(message, replyToken, source) {
       .then(() => client.leaveRoom(source.roomId));
     }
     case 'technology':
-      pushArticle('technology');
+      return pushArticle('technology');
     case 'space':
-      pushArticle('space');
+      return pushArticle('space');
     case 'health':
-      pushArticle('health-and-medicine');
+      return pushArticle('health-and-medicine');
     case 'brain':
-      pushArticle('brain');
+      return pushArticle('brain');
     case 'plants':
-      pushArticle('plants-and-animals');
+      return pushArticle('plants-and-animals');
     case 'physics':
-      pushArticle('physics');
+      return pushArticle('physics');
     case 'chemistry':
-      pushArticle('chemistry');
+      return pushArticle('chemistry');
     case 'policy':
-      pushArticle('policy');
+      return pushArticle('policy');
     case 'blog':
-      pushArticle('editors-blog');
+      return pushArticle('editors-blog');
     default:
     console.log(`Echo message to ${replyToken}: ${message.text}`);
     return replyText(replyToken, message.text);
