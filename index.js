@@ -5,6 +5,9 @@ const express = require('express');
 const fs = require('fs');
 const path = require('path');
 const cp = require('child_process');
+const request = require('request');
+
+const cheerio = require('cheerio')
 // getting-started.js
 const mongoose = require('mongoose');
 mongoose.connect('mongodb://admin:admin123@ds135757.mlab.com:35757/slave');
@@ -16,25 +19,48 @@ const config = {
   channelSecret: '23e875b7f89a534de55249f2c5911639',
 };
 const db = mongoose.connection;
-db.on('error', console.error.bind(console, 'connection error:'));
-db.once('open', function() {
-  console.log('we\'re connected!');
-  // we're connected!
-});
 
-// var url = 'mongodb://admin:admin123@ds135757.mlab.com:35757/slave';
-//  MongoClient.connect(url, function (err, db) {
-//   if (err) {
-//     console.log('Unable to connect to the mongoDB server. Error:', err);
-//   } else {
-//     console.log('Connection established to', url);
+const pushArticle = ()=>{
+  // db.on('error', console.error.bind(console, 'connection error:'));
+  // db.once('open', function() {
+  //   console.log('we\'re connected!');
+  //   var ArticleSchema = new mongoose.Schema({
+  //     title:String,
+  //     href:String,
+  //     category:String
+  //   });
+  //   var ArticleModel = db.model('Article',ArticleSchema);
+    const url = 'https://www.iflscience.com/';
+    request(url, (err, res, body) => {
+    // console.log(body);
+    const $ = cheerio.load(body);
+    let Articles = [];
+    Articles = $('.page .main-content article .content').find('a');
+    // console.log(Articles);
+    console.log('type= '+typeof(Articles));
+    // for(var index =0 ; index<3; index++){
+    //   client.pushMessage(,{
+    //     "type": "text",
+    //     "text": "選一篇喜歡的文章來讀吧~\n"+
+    //             "1.\n 主題："+Articles[index.toString()]["attribs"]["title"]+
+    //             "\n類別："+Articles[index.toString()]["attribs"]["href"].split("/")[3]+
+    //             "\n"+Articles[index.toString()]["attribs"]["href"]
+    //   });
+    //   // var articleEntity = new ArticleModel(
+    //   // {
+    //   //   title:Articles[index.toString()]["attribs"]["title"],
+    //   //   href:Articles[index.toString()]["attribs"]["href"],
+    //   //   category: Articles[index.toString()]["attribs"]["href"].split("/")[3]
+    //   // });
+    //   // articleEntity.save();
+    // }
+    
+  })
 
-//     // do some work here with the database.
+  // });
+};
 
-//     //Close connection
-//     db.close();
-//   }
-// });
+
 // base URL for webhook server
 const baseURL = 'https://coffee-nason.herokuapp.com/';
 
@@ -81,45 +107,45 @@ function handleEvent(event) {
     const message = event.message;
     switch (message.type) {
       case 'text':
-        return handleText(message, event.replyToken, event.source);
+      return handleText(message, event.replyToken, event.source);
       case 'image':
-        return handleImage(message, event.replyToken);
+      return handleImage(message, event.replyToken);
       case 'video':
-        return handleVideo(message, event.replyToken);
+      return handleVideo(message, event.replyToken);
       case 'audio':
-        return handleAudio(message, event.replyToken);
+      return handleAudio(message, event.replyToken);
       case 'location':
-        return handleLocation(message, event.replyToken);
+      return handleLocation(message, event.replyToken);
       case 'sticker':
-        return handleSticker(message, event.replyToken);
+      return handleSticker(message, event.replyToken);
       default:
-        throw new Error(`Unknown message: ${JSON.stringify(message)}`);
+      throw new Error(`Unknown message: ${JSON.stringify(message)}`);
     }
 
     case 'follow':
-      return replyText(event.replyToken, 'Got followed event');
+    return replyText(event.replyToken, 'Got followed event');
 
     case 'unfollow':
-      return console.log(`Unfollowed this bot: ${JSON.stringify(event)}`);
+    return console.log(`Unfollowed this bot: ${JSON.stringify(event)}`);
 
     case 'join':
-      return replyText(event.replyToken, `Joined ${event.source.type}`);
+    return replyText(event.replyToken, `Joined ${event.source.type}`);
 
     case 'leave':
-      return console.log(`Left: ${JSON.stringify(event)}`);
+    return console.log(`Left: ${JSON.stringify(event)}`);
 
     case 'postback':
-      let data = event.postback.data;
-      if (data === 'DATE' || data === 'TIME' || data === 'DATETIME') {
-        data += `(${JSON.stringify(event.postback.params)})`;
-      }
-        return replyText(event.replyToken, `Got postback: ${data}`);
+    let data = event.postback.data;
+    if (data === 'DATE' || data === 'TIME' || data === 'DATETIME') {
+      data += `(${JSON.stringify(event.postback.params)})`;
+    }
+    return replyText(event.replyToken, `Got postback: ${data}`);
 
     case 'beacon':
-      return replyText(event.replyToken, `Got beacon: ${event.beacon.hwid}`);
+    return replyText(event.replyToken, `Got beacon: ${event.beacon.hwid}`);
 
     default:
-      throw new Error(`Unknown event: ${JSON.stringify(event)}`);
+    throw new Error(`Unknown event: ${JSON.stringify(event)}`);
   }
 }
 
@@ -128,45 +154,46 @@ function handleText(message, replyToken, source) {
 
   switch (message.text) {
     case 'profile':
-      if (source.userId) {
-        return client.getProfile(source.userId)
-        .then((profile) => replyText(
-          replyToken,
-          [
-          `Display name: ${profile.displayName}`,
-          `Status message: ${profile.statusMessage}`,
-          ]
-          ));
-      } else {
-        return replyText(replyToken, 'Bot can\'t use profile API without user ID');
-      }
+    if (source.userId) {
+      return client.getProfile(source.userId)
+      .then((profile) => replyText(
+        replyToken,
+        [
+        `Display name: ${profile.displayName}`,
+        `Status message: ${profile.statusMessage}`,
+        `Display userId: ${source.userId}`
+        ]
+        ));
+    } else {
+      return replyText(replyToken, 'Bot can\'t use profile API without user ID');
+    }
     case 'buttons':
-      return client.replyMessage(
-        replyToken,
-        {
-          type: 'template',
-          altText: 'Buttons alt text',
-          template: {
-            type: 'buttons',
-            thumbnailImageUrl: buttonsImageURL,
-            title: 'My button sample',
-            text: 'Hello, my button',
-            actions: [
-            { label: 'Go to line.me', type: 'uri', uri: 'https://line.me' },
-            { label: 'Say hello1', type: 'postback', data: 'hello こんにちは' },
-            { label: '言 hello2', type: 'postback', data: 'hello こんにちは', text: 'hello こんにちは' },
-            { label: 'Say message', type: 'message', text: 'Rice=米' },
-            ],
-          },
-        }
-        );
+    return client.replyMessage(
+      replyToken,
+      {
+        type: 'template',
+        altText: 'Buttons alt text',
+        template: {
+          type: 'buttons',
+          thumbnailImageUrl: buttonsImageURL,
+          title: 'My button sample',
+          text: 'Hello, my button',
+          actions: [
+          { label: 'Go to line.me', type: 'uri', uri: 'https://line.me' },
+          { label: 'Say hello1', type: 'postback', data: 'hello こんにちは' },
+          { label: '言 hello2', type: 'postback', data: 'hello こんにちは', text: 'hello こんにちは' },
+          { label: 'Say message', type: 'message', text: 'Rice=米' },
+          ],
+        },
+      }
+      );
     case 'confirm':
-      return client.replyMessage(
-        replyToken,
-        {
-          type: 'template',
-          altText: 'Confirm alt text',
-          template: {
+    return client.replyMessage(
+      replyToken,
+      {
+        type: 'template',
+        altText: 'Confirm alt text',
+        template: {
           type: 'confirm',
           text: 'Do it?',
           actions: [
@@ -177,39 +204,39 @@ function handleText(message, replyToken, source) {
       }
       )
     case 'carousel':
-      return client.replyMessage(
-       replyToken,
-       {
-        type: 'template',
-        altText: 'Carousel alt text',
-        template: {
-          type: 'carousel',
-          columns: [
-          {
-            thumbnailImageUrl: buttonsImageURL,
-            title: 'hoge',
-            text: 'fuga',
-            actions: [
-            { label: 'Go to line.me', type: 'uri', uri: 'https://line.me' },
-            { label: 'Say hello1', type: 'postback', data: 'hello こんにちは' },
-            ],
-          },
-          {
-            thumbnailImageUrl: buttonsImageURL,
-            title: 'hoge',
-            text: 'fuga',
-            actions: [
-            { label: '言 hello2', type: 'postback', data: 'hello こんにちは', text: 'hello こんにちは' },
-            { label: 'Say message', type: 'message', text: 'Rice=米' },
-            ],
-          },
+    return client.replyMessage(
+     replyToken,
+     {
+      type: 'template',
+      altText: 'Carousel alt text',
+      template: {
+        type: 'carousel',
+        columns: [
+        {
+          thumbnailImageUrl: buttonsImageURL,
+          title: 'hoge',
+          text: 'fuga',
+          actions: [
+          { label: 'Go to line.me', type: 'uri', uri: 'https://line.me' },
+          { label: 'Say hello1', type: 'postback', data: 'hello こんにちは' },
           ],
         },
-      }
-      );
+        {
+          thumbnailImageUrl: buttonsImageURL,
+          title: 'hoge',
+          text: 'fuga',
+          actions: [
+          { label: '言 hello2', type: 'postback', data: 'hello こんにちは', text: 'hello こんにちは' },
+          { label: 'Say message', type: 'message', text: 'Rice=米' },
+          ],
+        },
+        ],
+      },
+    }
+    );
     case 'image carousel':
-      return client.replyMessage(
-        replyToken,
+    return client.replyMessage(
+      replyToken,
       {
         type: 'template',
         altText: 'Image carousel alt text',
@@ -242,8 +269,8 @@ function handleText(message, replyToken, source) {
       }
       );
     case 'datetime':
-      return client.replyMessage(
-        replyToken,
+    return client.replyMessage(
+      replyToken,
       {
         type: 'template',
         altText: 'Datetime pickers alt text',
