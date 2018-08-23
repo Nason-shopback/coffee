@@ -399,14 +399,14 @@ const pushArticle = ()=>{
       client.pushMessage('U505af16bb05fed728c8f39f72806de75',{
         "type": "text",
         "text": "選一篇喜歡的文章來讀吧~\n"+
-                "1.\n 主題："+Articles["0"]["attribs"]["title"]+
-                "\n類別："+Articles["0"]["attribs"]["href"].split("/")[3]+
+                "1.\n 主題：\n"+Articles["0"]["attribs"]["title"]+
+                "\n類別：\n"+Articles["0"]["attribs"]["href"].split("/")[3]+
                 "\n"+Articles["0"]["attribs"]["href"]+
-                "2.\n 主題："+Articles["1"]["attribs"]["title"]+
-                "\n類別："+Articles["1"]["attribs"]["href"].split("/")[3]+
+                "2.\n 主題：\n"+Articles["1"]["attribs"]["title"]+
+                "\n類別：\n"+Articles["1"]["attribs"]["href"].split("/")[3]+
                 "\n"+Articles["1"]["attribs"]["href"]+
-                "3.\n 主題："+Articles["2"]["attribs"]["title"]+
-                "\n類別："+Articles["2"]["attribs"]["href"].split("/")[3]+
+                "3.\n 主題：\n"+Articles["2"]["attribs"]["title"]+
+                "\n類別：\n"+Articles["2"]["attribs"]["href"].split("/")[3]+
                 "\n"+Articles["2"]["attribs"]["href"]
 
       });
@@ -431,7 +431,7 @@ function nowTime(){
 }
  
 function control(){
-            if(hours==9 && minute==30 && seconds==0){
+            if(hours==11 && minute==46 && seconds==50){
                 pushArticle();
             }else
               console.log("Not yet");
