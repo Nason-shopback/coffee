@@ -291,25 +291,25 @@ function handleText(message, replyToken, source) {
       .then(() => client.leaveRoom(source.roomId));
     }
     case 'technology':
-      return pushArticle('technology');
+      return replyArticle(replyToken, 'technology');
     case 'space':
-      return pushArticle('space');
+      return replyArticle(replyToken, 'space');
     case 'health-and-medicine':
-      return pushArticle('health-and-medicine');
+      return replyArticle(replyToken, 'health-and-medicine');
     case 'brain':
-      return pushArticle('brain');
+      return replyArticle(replyToken, 'brain');
     case 'plants-and-animals':
-      return pushArticle('plants-and-animals');
+      return replyArticle(replyToken, 'plants-and-animals');
     case 'physics':
-      return pushArticle('physics');
+      return replyArticle(replyToken, 'physics');
     case 'chemistry':
-      return pushArticle('chemistry');
+      return replyArticle(replyToken, 'chemistry');
     case 'policy':
-      return pushArticle('policy');
+      return replyArticle(replyToken, 'policy');
     case 'editors-blog':
-      return pushArticle('editors-blog');
-    case 'top':
-      return pushArticle();
+      return replyArticle(replyToken, 'editors-blog');
+    case 'top-random':
+      return pushArticle(replyToken);
     default:
     console.log(`Echo message to ${replyToken}: ${message.text}`);
     return replyText(replyToken, message.text);
@@ -416,7 +416,53 @@ function handleSticker(message, replyToken) {
     }
     );
 }
-const pushArticle = (category="")=>{
+
+const pushArticle = (token=null)=>{
+
+  const url = 'https://www.iflscience.com/';
+  request(url, (err, res, body) => {
+    const userIds = ['U505af16bb05fed728c8f39f72806de75'];
+    let $ = cheerio.load(body);
+    let Articles = [];
+    Articles = $('.page .main-content article .content').find('a');
+    const one = Math.floor((Math.random()*Articles.length));
+    const two = Math.floor((Math.random()*Articles.length));
+    const three = Math.floor((Math.random()*Articles.length));
+    if(token!= null){
+      client.replyMessage(token, {
+        "type": "text",
+        "text": "選一篇喜歡的文章來讀吧~\n"+
+        "1.\n 標題：\n"+Articles[one.toString()]["attribs"]["title"]+
+        "\n類別：\n"+Articles[one.toString()]["attribs"]["href"].split("/")[3]+
+        "\n"+Articles[one.toString()]["attribs"]["href"]+
+        "\n2.\n 標題：\n"+Articles[two.toString()]["attribs"]["title"]+
+        "\n類別：\n"+Articles[two.toString()]["attribs"]["href"].split("/")[3]+
+        "\n"+Articles[two.toString()]["attribs"]["href"]+
+        "\n3.\n 標題：\n"+Articles[three.toString()]["attribs"]["title"]+
+        "\n類別：\n"+Articles[three.toString()]["attribs"]["href"].split("/")[3]+
+        "\n"+Articles[three.toString()]["attribs"]["href"]
+      });
+    }
+    userIds.forEach((user)=>{
+      client.pushMessage(user,{
+        "type": "text",
+        "text": "選一篇喜歡的文章來讀吧~\n"+
+        "1.\n 標題：\n"+Articles[one.toString()]["attribs"]["title"]+
+        "\n類別：\n"+Articles[one.toString()]["attribs"]["href"].split("/")[3]+
+        "\n"+Articles[one.toString()]["attribs"]["href"]+
+        "\n2.\n 標題：\n"+Articles[two.toString()]["attribs"]["title"]+
+        "\n類別：\n"+Articles[two.toString()]["attribs"]["href"].split("/")[3]+
+        "\n"+Articles[two.toString()]["attribs"]["href"]+
+        "\n3.\n 標題：\n"+Articles[three.toString()]["attribs"]["title"]+
+        "\n類別：\n"+Articles[three.toString()]["attribs"]["href"].split("/")[3]+
+        "\n"+Articles[three.toString()]["attribs"]["href"]
+
+      });    
+    });
+  });
+
+};
+const replyArticle = (replyToken, category="")=>{
   // db.on('error', console.error.bind(console, 'connection error:'));
   // db.once('open', function() {
   //   console.log('we\'re connected!');
@@ -433,27 +479,17 @@ const pushArticle = (category="")=>{
     let Articles = [];
     Articles = $('.page .main-content article .content').find('a');
     // console.log(Articles);
-    console.log(
-                "1.\n 主題：\n"+Articles["0"]["attribs"]["title"]+
-                "\n類別：\n"+Articles["0"]["attribs"]["href"].split("/")[3]+
-                "\n"+Articles["0"]["attribs"]["href"]+
-                "\n2.\n 主題：\n"+Articles["1"]["attribs"]["title"]+
-                "\n類別：\n"+Articles["1"]["attribs"]["href"].split("/")[3]+
-                "\n"+Articles["1"]["attribs"]["href"]+
-                "\n3.\n 主題：\n"+Articles["2"]["attribs"]["title"]+
-                "\n類別：\n"+Articles["2"]["attribs"]["href"].split("/")[3]+
-                "\n"+Articles["2"]["attribs"]["href"]);
     
-      client.pushMessage('U505af16bb05fed728c8f39f72806de75',{
+      client.replyMessage(replyToken,{
         "type": "text",
         "text": "選一篇喜歡的文章來讀吧~\n"+
-                "1.\n 主題：\n"+Articles["0"]["attribs"]["title"]+
+                "1.\n 標題：\n"+Articles["0"]["attribs"]["title"]+
                 "\n類別：\n"+Articles["0"]["attribs"]["href"].split("/")[3]+
                 "\n"+Articles["0"]["attribs"]["href"]+
-                "\n2.\n 主題：\n"+Articles["1"]["attribs"]["title"]+
+                "\n2.\n 標題：\n"+Articles["1"]["attribs"]["title"]+
                 "\n類別：\n"+Articles["1"]["attribs"]["href"].split("/")[3]+
                 "\n"+Articles["1"]["attribs"]["href"]+
-                "\n3.\n 主題：\n"+Articles["2"]["attribs"]["title"]+
+                "\n3.\n 標題：\n"+Articles["2"]["attribs"]["title"]+
                 "\n類別：\n"+Articles["2"]["attribs"]["href"].split("/")[3]+
                 "\n"+Articles["2"]["attribs"]["href"]
 
@@ -489,6 +525,7 @@ function check(){
     control();
 }
 setInterval(check,1000);
+pushArticle();
 // listen on port
 const port = process.env.PORT || 3033;
 app.listen(port, () => {
