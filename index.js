@@ -135,7 +135,6 @@ function handleText(message, replyToken, source) {
         altText: 'Buttons alt text',
         template: {
           type: 'buttons',
-          // thumbnailImageUrl: buttonsImageURL,
           title: 'Buttons',
           text: 'Choose one of category',
           actions: [
@@ -147,7 +146,7 @@ function handleText(message, replyToken, source) {
           { label: 'physics', type: 'message', text: 'physics' },
           { label: 'chemistry', type: 'message', text: 'chemistry' },
           { label: 'policy', type: 'message', text: 'policy' },
-          { label: 'editors-blog', type: 'message', text: 'editors-blog' },
+          { label: 'editors-blog', type: 'message', text: 'editors-blog' }
           ],
         },
       }
@@ -474,7 +473,6 @@ function check(){
     control();
 }
 setInterval(check,1000);
-pushArticle();
 // listen on port
 const port = process.env.PORT || 3033;
 app.listen(port, () => {
