@@ -431,10 +431,12 @@ function nowTime(){
 }
  
 function control(){
-            if(hours==11 && minute==51 && seconds==0){
+            if(hours==11 && minutes==54 && seconds==0){
                 pushArticle();
-            }else
-              console.log("Not yet");
+                console.log("Launch!!!");
+            }else{
+              console.log("minute:"+minutes):
+            }
         }
 function check(){
     nowTime();
