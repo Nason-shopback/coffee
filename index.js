@@ -62,7 +62,8 @@ var reservationInfo = [
   getin_date: '2018/12/25',
   train_no: '271',
   n_order_qty_str: '1',
-  returnTicket: '0'
+  returnTicket: '0',
+  randInput: ''
 },
 {
   person_id: 'A145843937',
@@ -71,7 +72,8 @@ var reservationInfo = [
   getin_date: '2018/12/25',
   train_no: '271',
   n_order_qty_str: '1',
-  returnTicket: '0'
+  returnTicket: '0',
+  randInput: ''
 },
 {
   person_id: 'A146950048',
@@ -80,7 +82,8 @@ var reservationInfo = [
   getin_date: '2018/12/25',
   train_no: '271',
   n_order_qty_str: '1',
-  returnTicket: '0'
+  returnTicket: '0',
+  randInput: ''
 },
 {
   person_id: 'A195231530',
@@ -89,7 +92,8 @@ var reservationInfo = [
   getin_date: '2018/12/25',
   train_no: '271',
   n_order_qty_str: '1',
-  returnTicket: '0'
+  returnTicket: '0',
+  randInput: ''
 },
 ];
 var choice = 'X';
