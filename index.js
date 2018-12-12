@@ -92,8 +92,9 @@ var reservationInfo = [
   returnTicket: '0'
 },
 ];
-
-function orderTic(replyToken, choice){
+var choice = 'X';
+function orderTic(replyToken, Choice){
+  choice = Choice;
   initCookie()
   .then(() => {
     return fillInfo(replyToken, choice).catch(err => {console.log(err)});
@@ -145,14 +146,14 @@ function fillInfo(replyToken, choice) {
   });
 }
 
-function takeOrder(replyToken, code) {
+function takeOrder(replyToken,choice ,code) {
 
   return new Promise(done => {
-    reservationInfo.randInput = code
+    reservationInfo[choice].randInput = code
     var options = {
       url: 'http://railway.hinet.net/Foreign/common/etno11.jsp',
       method: 'POST',
-      form: reservationInfo,
+      form: reservationInfo[choice],
       headers: {
         referer: 'http://railway.hinet.net/Foreign/common/check_etno1.jsp?language=zh_TW',
       }
@@ -229,7 +230,7 @@ function handleText(message, replyToken, source) {
   // addUsertIdintofile(source.userId);
   if (sent) {
     sent = false;
-    return takeOrder(message).catch(err => {console.log(err)});
+    return takeOrder(message, ).catch(err => {console.log(err)});
   }
   switch (message.text) {
     case 'profile':
