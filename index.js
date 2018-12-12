@@ -129,16 +129,16 @@ function fillInfo(replyToken, choice) {
       var codePic = 'http://railway.hinet.net/' + $('#idRandomPic').eq(1).attr('src');
       console.log('codePic: '+codePic);
       sent = true;
-      client.replyMessage(replyToken, {
-        type: 'text',
-        text: codePic
-      });
-      // return client.replyMessage(replyToken, {
-      //   type: 'image',
-      //   originalContentUrl: codePic,
-      //   previewImageUrl: codePic,
+      // client.replyMessage(replyToken, {
+      //   type: 'text',
+      //   text: codePic
       // });
-        // Request('http://railway.hinet.net/' + $('#idRandomPic').eq(1).attr('src')).pipe(fs.createWriteStream('code.jpeg')).on('close', done)
+      client.replyMessage(replyToken, {
+        type: 'image',
+        contentProvider.originalContentUrl: codePic,
+        contentProvider.previewImageUrl: codePic,
+      }).catch(err => {console.log(err)});
+        Request('http://railway.hinet.net/' + $('#idRandomPic').eq(1).attr('src')).pipe(fs.createWriteStream('code.jpeg')).on('close', done)
       })
   });
 }
@@ -158,11 +158,11 @@ function takeOrder(replyToken, code) {
     Request(options, (err, res, body) => {
       var $ = cheerio.load(body);
       var num = $('#spanOrderCode').text();
-      console.log('num'+num);
-      // return client.replyMessage(replyToken, {
-      //     type: 'text',
-      //     text: num,
-      //   });
+      console.log('num: '+num);
+      return client.replyMessage(replyToken, {
+          type: 'text',
+          text: num,
+        });
     })
   })
 }
