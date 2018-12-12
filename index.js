@@ -129,9 +129,10 @@ function fillInfo(replyToken, choice) {
       var codePic = 'http://railway.hinet.net/' + $('#idRandomPic').eq(1).attr('src');
       console.log('codePic: '+codePic);
       sent = true;
-      // client.replyMessage(replyToken, {
-      //   "tpye"
-      // });
+      client.replyMessage(replyToken, {
+        type: 'text',
+        text: codePic
+      });
       // return client.replyMessage(replyToken, {
       //   type: 'image',
       //   originalContentUrl: codePic,
