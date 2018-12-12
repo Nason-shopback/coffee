@@ -25,7 +25,7 @@ const db = mongoose.connection;
 
 
 // base URL for webhook server
-const baseURL = 'https://coffee-nason.herokuapp.com/';
+const baseURL = 'https://coffee-nason.herokuapp.com';
 
 // create LINE SDK client
 const client = new line.Client(config);
