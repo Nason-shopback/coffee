@@ -129,17 +129,19 @@ function fillInfo(replyToken, choice) {
       var codePic = 'http://railway.hinet.net/' + $('#idRandomPic').eq(1).attr('src');
       console.log('codePic: '+codePic);
       sent = true;
-      Request('http://railway.hinet.net/' + $('#idRandomPic').eq(1).attr('src')).pipe(fs.createWriteStream('code.jpeg')).on('close', done)
+      const downloadPath = path.join(__dirname, `${choice}.jpeg`);
+      const previewPath = path.join(__dirname,  `${choice}-preview.jpeg`);
+      Request('http://railway.hinet.net/' + $('#idRandomPic').eq(1).attr('src')).pipe(fs.createWriteStream(downloadPath)).on('close', done)
       // client.replyMessage(replyToken, {
       //   type: 'text',
       //   text: codePic
       // });
-      // client.replyMessage(replyToken, {
-      //   type: 'image',
-      //   originalContentUrl: 'code.jpeg',
-      //   previewImageUrl: 'code.jpeg'
-        
-      // }).catch(err => {console.log(err)});
+      client.replyMessage(replyToken, {
+        type: 'image',
+        originalContentUrl: baseURL + path.basename(downloadPath),
+        previewImageUrl: baseURL + path.basename(previewPath)
+
+      }).catch(err => {console.log(err)});
     })
   });
 }
