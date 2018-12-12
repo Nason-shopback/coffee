@@ -132,7 +132,7 @@ function fillInfo(replyToken, choice) {
       // client.replyMessage(replyToken, {
       //   "tpye"
       // });
-      client.replyMessage(replyToken, {
+      return client.replyMessage(replyToken, {
         type: 'image',
         originalContentUrl: codePic,
         previewImageUrl: codePic,
