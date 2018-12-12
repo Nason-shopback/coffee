@@ -6,7 +6,7 @@ const fs = require('fs');
 const path = require('path');
 const cp = require('child_process');
 const request = require('request');
-const Request = require('request').defaults({
+const Request = request.defaults({
   jar: true,
   headers: {
     cookie: 'NSC_BQQMF=ffffffffaf121a1545525d5f4f58455e445a4a423660',
