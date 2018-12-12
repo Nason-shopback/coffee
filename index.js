@@ -139,8 +139,6 @@ function fillInfo(replyToken, choice) {
       client.replyMessage(replyToken, {
         type: 'image',
         originalContentUrl: baseURL + path.basename(downloadPath),
-        previewImageUrl: baseURL + path.basename(previewPath)
-
       }).catch(err => {console.log(err)});
     })
   });
