@@ -480,13 +480,13 @@ function handleText(message, replyToken, source) {
       "top-random\n"+
       "聽力：\n"+
       "listening");
-    case: 'A'
+    case 'A':
     return orderTic(replyToken, 'A');
-    case: 'B'
+    case 'B':
     return orderTic(replyToken, 'B');
-    case: 'C'
+    case 'C':
     return orderTic(replyToken, 'C');
-    case: 'D'
+    case 'D':
     return orderTic(replyToken, 'D');
     default:
     console.log(`Echo message to ${replyToken}: ${message.text}`);
