@@ -222,7 +222,7 @@ function handleText(message, replyToken, source) {
   // addUsertIdintofile(source.userId);
   if (sent) {
     sent = false;
-    return takeOrder(message);
+    return takeOrder(message).catch(err => {console.log(err)});
   }
   switch (message.text) {
     case 'profile':
