@@ -135,10 +135,10 @@ function fillInfo(replyToken, choice) {
       // });
       client.replyMessage(replyToken, {
         type: 'image',
-        contentProvider.originalContentUrl: codePic,
-        contentProvider.previewImageUrl: codePic,
+        originalContentUrl: codePic,
+        previewImageUrl: codePic,
       }).catch(err => {console.log(err)});
-        Request('http://railway.hinet.net/' + $('#idRandomPic').eq(1).attr('src')).pipe(fs.createWriteStream('code.jpeg')).on('close', done)
+        // Request('http://railway.hinet.net/' + $('#idRandomPic').eq(1).attr('src')).pipe(fs.createWriteStream('code.jpeg')).on('close', done)
       })
   });
 }
