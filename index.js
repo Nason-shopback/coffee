@@ -154,6 +154,7 @@ function takeOrder(replyToken,choice ,code) {
 
   return new Promise(done => {
     console.log('reservationInfo[choice]'+reservationInfo[choice]);
+    console.log('reservationInfo[choice].person_id'+reservationInfo[choice].person_id);
     reservationInfo[choice].randInput = code
     var options = {
       url: 'http://railway.hinet.net/Foreign/common/etno11.jsp',
