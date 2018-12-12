@@ -161,42 +161,6 @@ function takeOrder(replyToken, code) {
     })
   })
 }
-var now,hours,minutes,seconds,timeValue;
-
-function setChoice () {
-  var e = document.getElementById("form");
-  var choice = e.options[e.selectedIndex].value;
-  if ( choice == 'A') {
-    choice = 0;
-    console.log(choice);
-  }else if (choice == 'B') {
-    choice = 1;
-    console.log(choice);
-  }else if (choice == 'C') {
-    choice = 2;
-    console.log(choice);
-  } else {
-    choice = 3;
-    console.log(choice);
-  }
-
-  initCookie()
-  .then(() => {
-    return fillInfo(choice)
-  })
-  .then(() => {
-    return getCodeFromConsole()
-  })
-  .then((code) => {
-    return takeOrder(code);
-  })
-  .then((orderNumber) => {
-    console.log('訂位代號 => '+orderNumber);
-  })
-  .catch(err => {
-    console.log(err);
-  });
-}
 
 // simple reply function
 const replyText = (token, texts) => {
@@ -478,13 +442,13 @@ function handleText(message, replyToken, source) {
       "聽力：\n"+
       "listening");
     case 'A':
-    return orderTic(replyToken, 'A');
+    return orderTic(replyToken, 0);
     case 'B':
-    return orderTic(replyToken, 'B');
+    return orderTic(replyToken, 1);
     case 'C':
-    return orderTic(replyToken, 'C');
+    return orderTic(replyToken, 2);
     case 'D':
-    return orderTic(replyToken, 'D');
+    return orderTic(replyToken, 3);
     default:
     console.log(`Echo message to ${replyToken}: ${message.text}`);
     return replyText(replyToken, message.text+'\nBtw you can type "help" to get 指令大全:)');
