@@ -96,7 +96,7 @@ var reservationInfo = [
 function orderTic(replyToken, choice){
   initCookie()
   .then(() => {
-    return fillInfo(replyToken, choice)
+    return fillInfo(replyToken, choice).catch(err => {console.log(err)});
   })
   .catch(err => {
     console.log(err);
