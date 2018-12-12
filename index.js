@@ -128,12 +128,12 @@ function fillInfo(replyToken, choice) {
       $('body').append($('table noscript').html());
       var codePic = 'http://railway.hinet.net/' + $('#idRandomPic').eq(1).attr('src');
       console.log('codePic: '+codePic);
-      client.replyMessage(replyToken,{
+      sent = true;
+      return client.replyMessage(replyToken,{
         "type": "image",
         "originalContentUrl": codePic,
         "previewImageUrl": codePic
       });
-      sent = true;
         // Request('http://railway.hinet.net/' + $('#idRandomPic').eq(1).attr('src')).pipe(fs.createWriteStream('code.jpeg')).on('close', done)
       })
   });
@@ -154,7 +154,7 @@ function takeOrder(replyToken, code) {
     Request(options, (err, res, body) => {
       var $ = cheerio.load(body);
       var num = $('#spanOrderCode').text();
-      client.replyMessage(replyToken, {
+      return client.replyMessage(replyToken, {
           "type": "text",
           "text": num
         });
