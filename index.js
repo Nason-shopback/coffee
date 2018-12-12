@@ -130,7 +130,7 @@ function fillInfo(replyToken, choice) {
       console.log('codePic: '+codePic);
       sent = true;
       const downloadPath = path.join(__dirname, `${choice}.jpeg`);
-      const previewPath = path.join(__dirname,  `${choice}-preview.jpeg`);
+      // const previewPath = path.join(__dirname,  `${choice}-preview.jpeg`);
       Request('http://railway.hinet.net/' + $('#idRandomPic').eq(1).attr('src')).pipe(fs.createWriteStream(downloadPath)).on('close', done)
       // client.replyMessage(replyToken, {
       //   type: 'text',
@@ -139,6 +139,7 @@ function fillInfo(replyToken, choice) {
       client.replyMessage(replyToken, {
         type: 'image',
         originalContentUrl: baseURL + path.basename(downloadPath),
+        previewImageUrl: baseURL + path.basename(downloadPath)
       }).catch(err => {console.log(err)});
     })
   });
