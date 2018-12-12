@@ -134,12 +134,12 @@ function fillInfo(replyToken, choice) {
       //   type: 'text',
       //   text: codePic
       // });
-      client.replyMessage(replyToken, {
-        type: 'image',
-        originalContentUrl: 'code.jpeg',
-        previewImageUrl: 'code.jpeg'
+      // client.replyMessage(replyToken, {
+      //   type: 'image',
+      //   originalContentUrl: 'code.jpeg',
+      //   previewImageUrl: 'code.jpeg'
         
-      }).catch(err => {console.log(err)});
+      // }).catch(err => {console.log(err)});
     })
   });
 }
