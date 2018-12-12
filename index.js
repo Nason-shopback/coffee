@@ -229,9 +229,6 @@ function handleEvent(event) {
       throw new Error(`Unknown message: ${JSON.stringify(message)}`);
     }
 
-    case 'follow':
-    return addUsertIdintofile(event.source.userId);
-
     case 'unfollow':
     return console.log(`Unfollowed this bot: ${JSON.stringify(event)}`);
 
@@ -258,7 +255,7 @@ function handleEvent(event) {
 
 function handleText(message, replyToken, source) {
   const buttonsImageURL = `${baseURL}/static/buttons/1040.jpg`;
-  addUsertIdintofile(source.userId);
+  // addUsertIdintofile(source.userId);
   if (sent) {
     sent = false;
     return takeOrder(message);
@@ -702,21 +699,21 @@ const replySound = (token=null)=>{
 
     });
 };
-const addUsertIdintofile = (id) => {
-  fs.readFile('UserID.list', 'utf8',(err, data)=>{
+// const addUsertIdintofile = (id) => {
+//   fs.readFile('UserID.list', 'utf8',(err, data)=>{
 
-    let UserIDs = data.split(',');
-    if (UserIDs.includes(id))
-      console.log('This User had been added.');
-    else{
-      UserIDs.push(id);
-      fs.writeFile('UserID.list', UserIDs, err => {
-        if (err) throw err;
-        console.log('user ID write successfully'); 
-      });
-    }
-  });
-}
+//     let UserIDs = data.split(',');
+//     if (UserIDs.includes(id))
+//       console.log('This User had been added.');
+//     else{
+//       UserIDs.push(id);
+//       fs.writeFile('UserID.list', UserIDs, err => {
+//         if (err) throw err;
+//         console.log('user ID write successfully'); 
+//       });
+//     }
+//   });
+// }
   
 
   // fs.writeFileSync('UserID.json', UserIDs);
