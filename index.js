@@ -129,20 +129,18 @@ function fillInfo(replyToken, choice) {
       var codePic = 'http://railway.hinet.net/' + $('#idRandomPic').eq(1).attr('src');
       console.log('codePic: '+codePic);
       sent = true;
+      Request('http://railway.hinet.net/' + $('#idRandomPic').eq(1).attr('src')).pipe(fs.createWriteStream('code.jpeg')).on('close', done)
       // client.replyMessage(replyToken, {
       //   type: 'text',
       //   text: codePic
       // });
       client.replyMessage(replyToken, {
         type: 'image',
-        contentProvider: {
-          type: "external",
-          originalContentUrl: codePic,
-          previewImageUrl: codePic
-        }, 
+        originalContentUrl: 'code.jpeg',
+        previewImageUrl: 'code.jpeg'
+        
       }).catch(err => {console.log(err)});
-        // Request('http://railway.hinet.net/' + $('#idRandomPic').eq(1).attr('src')).pipe(fs.createWriteStream('code.jpeg')).on('close', done)
-      })
+    })
   });
 }
 
