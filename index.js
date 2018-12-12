@@ -63,7 +63,7 @@ var reservationInfo = [
   train_no: '271',
   n_order_qty_str: '1',
   returnTicket: '0',
-  randInput: ''
+  randInput: 'a'
 },
 {
   person_id: 'A145843937',
@@ -73,7 +73,7 @@ var reservationInfo = [
   train_no: '271',
   n_order_qty_str: '1',
   returnTicket: '0',
-  randInput: ''
+  randInput: 'a'
 },
 {
   person_id: 'A146950048',
@@ -83,7 +83,7 @@ var reservationInfo = [
   train_no: '271',
   n_order_qty_str: '1',
   returnTicket: '0',
-  randInput: ''
+  randInput: 'a'
 },
 {
   person_id: 'A195231530',
@@ -93,7 +93,7 @@ var reservationInfo = [
   train_no: '271',
   n_order_qty_str: '1',
   returnTicket: '0',
-  randInput: ''
+  randInput: 'a'
 },
 ];
 var choice = 'X';
@@ -153,6 +153,7 @@ function fillInfo(replyToken, choice) {
 function takeOrder(replyToken,choice ,code) {
 
   return new Promise(done => {
+    console.log('reservationInfo[choice]'+reservationInfo[choice]);
     reservationInfo[choice].randInput = code
     var options = {
       url: 'http://railway.hinet.net/Foreign/common/etno11.jsp',
