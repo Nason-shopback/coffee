@@ -129,10 +129,13 @@ function fillInfo(replyToken, choice) {
       var codePic = 'http://railway.hinet.net/' + $('#idRandomPic').eq(1).attr('src');
       console.log('codePic: '+codePic);
       sent = true;
-      return client.replyMessage(replyToken,{
-        "type": "image",
-        "originalContentUrl": codePic,
-        "previewImageUrl": codePic
+      // client.replyMessage(replyToken, {
+      //   "tpye"
+      // });
+      client.replyMessage(replyToken, {
+        type: 'image',
+        originalContentUrl: codePic,
+        previewImageUrl: codePic,
       });
         // Request('http://railway.hinet.net/' + $('#idRandomPic').eq(1).attr('src')).pipe(fs.createWriteStream('code.jpeg')).on('close', done)
       })
@@ -155,8 +158,8 @@ function takeOrder(replyToken, code) {
       var $ = cheerio.load(body);
       var num = $('#spanOrderCode').text();
       return client.replyMessage(replyToken, {
-          "type": "text",
-          "text": num
+          type: 'text',
+          text: num,
         });
     })
   })
