@@ -131,15 +131,15 @@ function fillInfo(replyToken, choice) {
       sent = true;
       const downloadPath = path.join(__dirname, `${choice}.jpeg`);
       // const previewPath = path.join(__dirname,  `${choice}-preview.jpeg`);
-      Request('http://railway.hinet.net/' + $('#idRandomPic').eq(1).attr('src')).pipe(fs.createWriteStream(downloadPath)).on('close', done)
-      // client.replyMessage(replyToken, {
-      //   type: 'text',
-      //   text: codePic
-      // });
+      Request('http://railway.hinet.net/' + $('#idRandomPic').eq(1).attr('src')).pipe(fs.createWriteStream(downloadPath)).on('close', done);
+      client.replyMessage(replyToken, {
+        type: 'text',
+        text: codePic
+      });
       client.replyMessage(replyToken, {
         type: 'image',
-        originalContentUrl: baseURL + path.basename(downloadPath),
-        previewImageUrl: baseURL + path.basename(downloadPath)
+        originalContentUrl: baseURL + downloadPath,
+        previewImageUrl: baseURL + downloadPath
       }).catch(err => {console.log(err)});
     })
   });
@@ -164,7 +164,7 @@ function takeOrder(replyToken, code) {
       return client.replyMessage(replyToken, {
           type: 'text',
           text: num,
-        });
+        }).catch(err => {console.log(err)});
     })
   })
 }
