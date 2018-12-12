@@ -129,7 +129,7 @@ function fillInfo(replyToken, choice) {
       var codePic = 'http://railway.hinet.net/' + $('#idRandomPic').eq(1).attr('src');
       console.log('codePic: '+codePic);
       sent = true;
-      const downloadPath = path.join(__dirname, 'downloaded', `${choice}.mp4`);
+      const downloadPath = path.join(__dirname, 'downloaded', `${choice}.jpeg`);
       // const previewPath = path.join(__dirname, 'downloaded', `${choice}-preview.jpg`);
       Request('http://railway.hinet.net/' + $('#idRandomPic').eq(1).attr('src')).pipe(fs.createWriteStream(downloadPath)).on('close', done);
       client.replyMessage(replyToken, {
