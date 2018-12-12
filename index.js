@@ -594,54 +594,54 @@ function handleSticker(message, replyToken) {
     );
 }
 
-const pushArticle = (token=null)=>{
-  fs.readFile('UserID.list', 'utf8',(err, data)=>{
+// const pushArticle = (token=null)=>{
+//   fs.readFile('UserID.list', 'utf8',(err, data)=>{
 
-    const url = 'https://www.iflscience.com/';
-    request(url, (err, res, body) => {
-      const userIds = data.split(',');
-      let $ = cheerio.load(body);
-      let Articles = [];
-      Articles = $('.page .main-content article .content').find('a');
-      const one = Math.floor((Math.random()*Articles.length));
-      const two = Math.floor((Math.random()*Articles.length));
-      const three = Math.floor((Math.random()*Articles.length));
-      if(token != null){
-        client.replyMessage(token, {
-          "type": "text",
-          "text": "選一篇喜歡的文章來讀吧~\n"+
-          "1.\n標題：\n"+Articles[one.toString()]["attribs"]["title"]+
-          "\n類別：\n"+Articles[one.toString()]["attribs"]["href"].split("/")[3]+
-          "\n"+Articles[one.toString()]["attribs"]["href"]+
-          "\n2.\n標題：\n"+Articles[two.toString()]["attribs"]["title"]+
-          "\n類別：\n"+Articles[two.toString()]["attribs"]["href"].split("/")[3]+
-          "\n"+Articles[two.toString()]["attribs"]["href"]+
-          "\n3.\n標題：\n"+Articles[three.toString()]["attribs"]["title"]+
-          "\n類別：\n"+Articles[three.toString()]["attribs"]["href"].split("/")[3]+
-          "\n"+Articles[three.toString()]["attribs"]["href"]
-        });
-      }else{
-        userIds.forEach((user)=>{
-          client.pushMessage(user,{
-            "type": "text",
-            "text": "選一篇喜歡的文章來讀吧~\n"+
-            "1.\n標題：\n"+Articles[one.toString()]["attribs"]["title"]+
-            "\n類別：\n"+Articles[one.toString()]["attribs"]["href"].split("/")[3]+
-            "\n"+Articles[one.toString()]["attribs"]["href"]+
-            "\n2.\n標題：\n"+Articles[two.toString()]["attribs"]["title"]+
-            "\n類別：\n"+Articles[two.toString()]["attribs"]["href"].split("/")[3]+
-            "\n"+Articles[two.toString()]["attribs"]["href"]+
-            "\n3.\n標題：\n"+Articles[three.toString()]["attribs"]["title"]+
-            "\n類別：\n"+Articles[three.toString()]["attribs"]["href"].split("/")[3]+
-            "\n"+Articles[three.toString()]["attribs"]["href"]
-          });
+//     const url = 'https://www.iflscience.com/';
+//     request(url, (err, res, body) => {
+//       const userIds = data.split(',');
+//       let $ = cheerio.load(body);
+//       let Articles = [];
+//       Articles = $('.page .main-content article .content').find('a');
+//       const one = Math.floor((Math.random()*Articles.length));
+//       const two = Math.floor((Math.random()*Articles.length));
+//       const three = Math.floor((Math.random()*Articles.length));
+//       if(token != null){
+//         client.replyMessage(token, {
+//           "type": "text",
+//           "text": "選一篇喜歡的文章來讀吧~\n"+
+//           "1.\n標題：\n"+Articles[one.toString()]["attribs"]["title"]+
+//           "\n類別：\n"+Articles[one.toString()]["attribs"]["href"].split("/")[3]+
+//           "\n"+Articles[one.toString()]["attribs"]["href"]+
+//           "\n2.\n標題：\n"+Articles[two.toString()]["attribs"]["title"]+
+//           "\n類別：\n"+Articles[two.toString()]["attribs"]["href"].split("/")[3]+
+//           "\n"+Articles[two.toString()]["attribs"]["href"]+
+//           "\n3.\n標題：\n"+Articles[three.toString()]["attribs"]["title"]+
+//           "\n類別：\n"+Articles[three.toString()]["attribs"]["href"].split("/")[3]+
+//           "\n"+Articles[three.toString()]["attribs"]["href"]
+//         });
+//       }else{
+//         userIds.forEach((user)=>{
+//           client.pushMessage(user,{
+//             "type": "text",
+//             "text": "選一篇喜歡的文章來讀吧~\n"+
+//             "1.\n標題：\n"+Articles[one.toString()]["attribs"]["title"]+
+//             "\n類別：\n"+Articles[one.toString()]["attribs"]["href"].split("/")[3]+
+//             "\n"+Articles[one.toString()]["attribs"]["href"]+
+//             "\n2.\n標題：\n"+Articles[two.toString()]["attribs"]["title"]+
+//             "\n類別：\n"+Articles[two.toString()]["attribs"]["href"].split("/")[3]+
+//             "\n"+Articles[two.toString()]["attribs"]["href"]+
+//             "\n3.\n標題：\n"+Articles[three.toString()]["attribs"]["title"]+
+//             "\n類別：\n"+Articles[three.toString()]["attribs"]["href"].split("/")[3]+
+//             "\n"+Articles[three.toString()]["attribs"]["href"]
+//           });
 
-        });
-      }
-    });
-  });
+//         });
+//       }
+//     });
+//   });
 
-};
+// };
 const replyArticle = (replyToken, category="")=>{
 
   const article_url = 'https://www.iflscience.com/'+category;
@@ -716,6 +716,7 @@ const addUsertIdintofile = (id) => {
       });
     }
   });
+}
   
 
   // fs.writeFileSync('UserID.json', UserIDs);
@@ -745,39 +746,39 @@ const addUsertIdintofile = (id) => {
 
   // });
 
-};
-var hours,minutes,seconds;
-function nowTime(){
- hours=new Date().getHours();
- minutes=new Date().getMinutes();
- seconds=new Date().getSeconds();
-}
+// };
+// var hours,minutes,seconds;
+// function nowTime(){
+//  hours=new Date().getHours();
+//  minutes=new Date().getMinutes();
+//  seconds=new Date().getSeconds();
+// }
 
-function control(){
-  if(hours==(9-8) && minutes==0 && seconds==0){
-    console.log("Launch!!!");
-    pushArticle();
-  }
-}
-function check(){
-  nowTime();
-  control();
-  fs.readFile('date.list', 'utf8',(err, date)=>{
-    let TODATE = new Date().getDate();
-    if (date !== TODATE.toString()){
-      console.log('The last date:' + date);
-      console.log('Push articles');
-      pushArticle();
-      fs.writeFile('date.list', TODATE, err => {
-        if (err) throw err;
+// function control(){
+//   if(hours==(9-8) && minutes==0 && seconds==0){
+//     console.log("Launch!!!");
+//     pushArticle();
+//   }
+// }
+// function check(){
+//   nowTime();
+//   control();
+//   fs.readFile('date.list', 'utf8',(err, date)=>{
+//     let TODATE = new Date().getDate();
+//     if (date !== TODATE.toString()){
+//       console.log('The last date:' + date);
+//       console.log('Push articles');
+//       pushArticle();
+//       fs.writeFile('date.list', TODATE, err => {
+//         if (err) throw err;
 
-        // console.log('Date write successfully'); 
-      });
-    }
-    else{
-      // console.log('It has been pushed.');
-    }
-  });
+//         // console.log('Date write successfully'); 
+//       });
+//     }
+//     else{
+//       // console.log('It has been pushed.');
+//     }
+//   });
   // db.on('error', console.error.bind(console, 'connection error:'));
   // db.once('open', function() {
   //   console.log('we\'re connected!');
@@ -813,9 +814,9 @@ function check(){
 
   // });
 
-}
-check();
-setInterval(check,1000);
+// }
+// check();
+// setInterval(check,1000);
 // listen on port
 const port = process.env.PORT || 3033;
 app.listen(port, () => {
